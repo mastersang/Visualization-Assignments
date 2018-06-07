@@ -1,0 +1,29 @@
+package infovis.paracoords;
+
+import infovis.scatterplot.Data;
+
+public class PlotLine {
+	private Data data;
+	private double[] yCoords;
+
+	public PlotLine(Data data, double[] yCoords) {
+		this.data = data;
+		this.yCoords = yCoords;
+	}
+
+	public Data getData() {
+		return data;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public double[] getyCoords() {
+		return yCoords;
+	}
+
+	public void setyCoords(double[] yCoords) {
+		this.yCoords = yCoords;
+	}
+}

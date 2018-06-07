@@ -1,0 +1,56 @@
+package infovis.paracoords;
+
+public class Axis {
+	private int x;
+	private int translation;
+	private double min;
+	private double max;
+	private double step;
+
+	public Axis(int x, double min, double max, double step) {
+		this.x = x;
+		this.min = min;
+		this.max = max;
+		this.step = step;
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+	public double getMin() {
+		return min;
+	}
+
+	public void setMin(double min) {
+		this.min = min;
+	}
+
+	public double getStep() {
+		return step;
+	}
+
+	public void setStep(double step) {
+		this.step = step;
+	}
+
+	public double getMax() {
+		return max;
+	}
+
+	public void setMax(double max) {
+		this.max = max;
+	}
+
+	public int getTranslation() {
+		return translation;
+	}
+
+	public void setTranslation(int offset) {
+		this.translation = offset;
+	}
+}

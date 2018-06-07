@@ -1,0 +1,11 @@
+package infovis.scatterplot;
+
+public class PlotPoint {
+	public double valueHorizontal;
+	public double valueVertical;
+
+	public PlotPoint(double valueHorizontal, double valueVertical) {
+		this.valueHorizontal = valueHorizontal;
+		this.valueVertical = valueVertical;
+	}
+}

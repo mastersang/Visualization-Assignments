@@ -1,0 +1,120 @@
+package infovis.scatterplot;
+
+import infovis.debug.Debug;
+import javafx.scene.shape.Circle;
+
+import java.awt.BasicStroke;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
+
+import javax.swing.JPanel;
+
+public class View extends JPanel {
+	private Model model = null;
+	private Rectangle2D markerRectangle = new Rectangle2D.Double(0, 0, 0, 0);
+	private int cellSize = 40;
+	private int pointSize = 4;
+
+	public Rectangle2D getMarkerRectangle() {
+		return markerRectangle;
+	}
+
+	@Override
+	public void paint(Graphics g) {
+		Graphics2D g2D = (Graphics2D) g;
+		debug();
+
+		// set cell size depending on frame size
+		cellSize = (getHeight() - 50) / model.getLabels().size();
+		g2D.setStroke(new BasicStroke(2.f));
+
+		// columnn loop
+		for (int i = 0; i < model.getLabels().size(); ++i) {
+			// row loop
+			for (int j = 0; j < model.getLabels().size(); ++j) {
+				Rectangle2D cell = new Rectangle2D.Double(cellSize * i + 5, cellSize * j + 5, cellSize, cellSize);
+				g2D.draw(cell);
+
+				// Fill cell with white background
+				g2D.setPaint(Color.WHITE);
+				g2D.fill(cell);
+				g2D.setPaint(Color.BLACK);
+
+				// diagonal cell
+				if (j == i) {
+					drawDiagonalCell(g2D, cell, model.getLabels().get(i));
+				} else {
+					drawPlotCell(g2D, cell, i, j);
+				}
+			}
+		}
+	}
+
+	private void drawDiagonalCell(Graphics2D g2D, Rectangle2D cell, String label) {
+		Font font = new Font("Arial", Font.PLAIN, 10);
+		g2D.setFont(font);
+
+		// center the text
+		// https://stackoverflow.com/questions/27706197/how-can-i-center-graphics-drawstring-in-java
+		FontMetrics metrics = g2D.getFontMetrics(font);
+		int x = (int) Math.round(cell.getX()) + (cellSize - metrics.stringWidth(label)) / 2;
+		int y = (int) Math.round(cell.getY()) + ((cellSize - metrics.getHeight()) / 2) + metrics.getAscent();
+		g2D.drawString(label, x, y);
+	}
+
+	private void drawPlotCell(Graphics2D g2D, Rectangle2D cell, int column, int row) {
+		Range rangeRow = model.getRanges().get(row);
+		double minVertical = rangeRow.getMin();
+		double maxVertical = rangeRow.getMax();
+		double stepVertical = (maxVertical - minVertical) / (cellSize - 10);
+		Range rangeColumn = model.getRanges().get(column);
+		double minHorizontal = rangeColumn.getMin();
+		double maxHorizontal = rangeColumn.getMax();
+		double stepHorizontal = (maxHorizontal - minHorizontal) / (cellSize - 10) / pointSize;
+
+		for (Data d : model.getList()) {
+			double valueVertical = d.getValue(row);
+			double valueHorizontal = d.getValue(column);
+			double x = cell.getX() + 5 + (valueHorizontal - minHorizontal) / stepHorizontal;
+			double y = cell.getY() + 5 + (valueVertical - minVertical) / stepVertical;
+			g2D.fillOval((int) Math.round(x) - pointSize, (int) Math.round(y) - pointSize, pointSize, pointSize);
+			g2D.fillOval((int) Math.round(x), (int) Math.round(y), pointSize, pointSize);//
+		}
+	}
+
+	private void debug() {
+		Debug.println("------------------");
+		Debug.println("Labels: ");
+
+		for (String l : model.getLabels()) {
+			Debug.print(l);
+			Debug.print(",  ");
+			Debug.println("");
+		}
+
+		Debug.println("------------------");
+		Debug.println("Ranges:");
+
+		for (Range range : model.getRanges()) {
+			Debug.print(range.toString());
+			Debug.print(",  ");
+			Debug.println("");
+		}
+
+		Debug.println("------------------");
+		Debug.println("Data:");
+
+		for (Data d : model.getList()) {
+			Debug.print(d.toString());
+			Debug.println("");
+		}
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+}

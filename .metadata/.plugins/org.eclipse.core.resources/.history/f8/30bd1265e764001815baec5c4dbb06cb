@@ -1,0 +1,8 @@
+package infovis.scatterplot;
+
+import java.awt.geom.Rectangle2D;
+
+public class MatrixCell {
+	private Rectangle2D cell;
+	private Data data;
+}

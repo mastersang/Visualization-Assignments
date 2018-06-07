@@ -1,0 +1,122 @@
+package infovis.paracoords;
+
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.FontMetrics;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
+import java.util.ArrayList;
+
+import javax.swing.JPanel;
+
+import infovis.scatterplot.Data;
+import infovis.scatterplot.Model;
+import infovis.scatterplot.Range;
+
+public class View extends JPanel {
+	private Model model = null;
+	private int paddingX = 100;
+	private int paddingY = 50;
+	private int axisHeight = 0;
+	private final int valueCount = 5;
+	private final int valueLength = 5;
+	private final int valuePadding = 5;
+	private ArrayList<Axis> axisList = new ArrayList<Axis>();
+	private ArrayList<PlotLine> lineList = new ArrayList<>(PlotLine);
+
+	@Override
+	public void paint(Graphics g) {
+		axisList.clear();
+		Graphics2D g2D = (Graphics2D) g;
+		g2D.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+		g2D.setBackground(Color.WHITE);
+		g2D.clearRect(0, 0, getWidth(), getHeight());
+		Font font = new Font("Arial", Font.PLAIN, 12);
+		g2D.setFont(font);
+		FontMetrics metrics = g2D.getFontMetrics(font);
+		paintAxis(g2D, metrics);
+		paintData(g2D, metrics);
+	}
+
+	private void paintAxis(Graphics2D g2D, FontMetrics metrics) {
+		axisHeight = getHeight() - paddingY * 3;
+		int gap = (getWidth() - paddingY) / model.getDim();
+
+		for (int i = 0; i < model.getLabels().size(); ++i) {
+			String label = model.getLabels().get(i);
+			int axisX = paddingX + gap * i;
+			g2D.drawLine(axisX, paddingY, axisX, paddingY + axisHeight);
+
+			// Center text
+			int x = axisX - metrics.stringWidth(label) / 2;
+			int y = paddingY * 2 + axisHeight;
+			g2D.setColor(Color.BLUE);
+			g2D.drawString(label, x, y);
+			g2D.setColor(Color.BLACK);
+
+			// Create Axis object
+			Range range = model.getRanges().get(i);
+			double min = range.getMin();
+			double step = (range.getMax() - min) / axisHeight;
+			axisList.add(new Axis(axisX, min, range.getMax(), step));
+		}
+	}
+
+	private void paintData(Graphics2D g2D, FontMetrics metrics) {
+		for (int i = 0; i < axisList.size(); ++i) {
+			Axis currentAxis = axisList.get(i);
+			Range range = model.getRanges().get(i);
+
+			// draw top value;
+			paintValue(g2D, currentAxis, paddingY, metrics, range.getMax());
+
+			// draw bottom value;
+			paintValue(g2D, currentAxis, paddingY + axisHeight, metrics, range.getMin());
+
+			// draw middle values;
+			double step = axisHeight / (valueCount + 1);
+
+			for (int j = 0; j < valueCount; ++j) {
+				int y = (int) Math.round(paddingY + axisHeight - step * (j + 1));
+				paintValue(g2D, currentAxis, y, metrics,
+						currentAxis.getMin() + (paddingY + axisHeight - y) * currentAxis.getStep());
+			}
+
+			// skip drawing lines on the last axis
+			if (i < axisList.size() - 1) {
+				for (Data data : model.getList()) {
+					Axis nextAxis = axisList.get(i + 1);
+					int startY = (int) Math.round(
+							paddingY + axisHeight - (data.getValue(i) - currentAxis.getMin()) / currentAxis.getStep());
+					int endY = (int) Math.round(
+							paddingY + axisHeight - (data.getValue(i + 1) - nextAxis.getMin()) / nextAxis.getStep());
+					g2D.drawLine(currentAxis.getX(), startY, nextAxis.getX(), endY);
+				}
+			}
+		}
+	}
+
+	private void paintValue(Graphics2D g2D, Axis axis, int y, FontMetrics metrics, double value) {
+		// draw top value
+		g2D.drawLine(axis.getX() - valueLength, y, axis.getX(), y);
+		String label = String.format("%.1f", value);
+		int x = axis.getX() - (metrics.stringWidth(label) + valuePadding);
+		g2D.setColor(Color.ORANGE);
+		g2D.drawString(label, x, y);
+		g2D.setColor(Color.BLACK);
+	}
+
+	@Override
+	public void update(Graphics g) {
+		paint(g);
+	}
+
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+}

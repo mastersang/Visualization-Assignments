@@ -1,0 +1,6 @@
+for (Data data : model.getList()) {
+					if (data.getValue(selectedCell.getRow()) == point.getValueHorizontal()
+							&& data.getValue(selectedCell.getColumn()) == point.getValueVertical()) {
+						data.setSelected(true);
+					}
+				}

@@ -1,0 +1,29 @@
+package infovis.scatterplot;
+
+import java.awt.geom.Rectangle2D;
+import java.util.ArrayList;
+
+public class MatrixCell {
+	private Rectangle2D cell;
+	private ArrayList<Data> dataList;
+	public Rectangle2D getCell() {
+		return cell;
+	}
+
+	public void setCell(Rectangle2D cell) {
+		this.cell = cell;
+	}
+
+	public Data getData() {
+		return dataList;
+	}
+
+	public void setData(Data data) {
+		this.data = data;
+	}
+
+	public MatrixCell(Rectangle2D cell, Data data) {
+		this.cell = cell;
+		this.data = data;
+	}
+}

@@ -1,0 +1,6 @@
+package infovis.scatterplot;
+
+public class PlotPoint {
+	public double x;
+	public double y;
+}

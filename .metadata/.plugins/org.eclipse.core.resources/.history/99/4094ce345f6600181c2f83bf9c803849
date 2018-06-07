@@ -1,0 +1,8 @@
+package infovis.paracoords;
+
+import infovis.scatterplot.Data;
+
+public class PlotLine {
+	private Data data;
+	private double[] yCoords;
+}

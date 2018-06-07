@@ -1,0 +1,5 @@
+package infovis.scatterplot;
+
+public class MatrixCell {
+
+}
