@@ -19,10 +19,14 @@ public class View extends JPanel {
 	private double scale = 1;
 	private double translateX = 0;
 	private double translateY = 0;
+	private double overviewTranslateX = 0;
+	private double overviewTranslateY = 0;
 	private Rectangle2D marker;
+	private Rectangle2D overviewTopBorder;
 	private Rectangle2D overviewRect;
 	private final int OVERVIEW_SCALE = 4;
 	private final int DEFAULT_BORDER_THICKNESS = 2;
+	private final int OVERVIEW_TOP_BORDER_HEIGHT = 15;
 
 	// Max translate X and Y so marker can't be dragged outside of overview
 	private double maxTranslateX = -1;
@@ -92,6 +96,10 @@ public class View extends JPanel {
 		marker.setRect(x, y, 16, 10);
 	}
 
+	public double getOverviewScale() {
+		return OVERVIEW_SCALE;
+	}
+
 	public Rectangle2D getMarker() {
 		return marker;
 	}
@@ -100,8 +108,8 @@ public class View extends JPanel {
 		return overviewRect;
 	}
 
-	public double getOverviewScale() {
-		return OVERVIEW_SCALE;
+	public Rectangle2D getOverviewTopBorder() {
+		return overviewTopBorder;
 	}
 
 	public void paint(Graphics g) {
@@ -145,16 +153,21 @@ public class View extends JPanel {
 	private void paintOverview(Graphics2D g2D) {
 		g2D.scale(1, 1);
 
-		int overviewWidth = getWidth() / OVERVIEW_SCALE;
-		int overvewHeight = getHeight() / OVERVIEW_SCALE;
+		double overviewWidth = getWidth() / OVERVIEW_SCALE / scale;
+		double overvewHeight = getHeight() / OVERVIEW_SCALE / scale;
 
 		// Keep overview border constant
 		g2D.setStroke(new BasicStroke((float) (DEFAULT_BORDER_THICKNESS / scale)));
 
 		// Put overview at top right corner
-		double x = ((getWidth() - overviewWidth - 1) / scale) + translateX;
-		double y = (1 / scale) + translateY;
-		overviewRect = new Rectangle2D.Double(x, y, overviewWidth / scale, overvewHeight / scale);
+		double overviewX = ((getWidth() - 1) / scale) - overviewWidth + translateX + overviewTranslateX;
+		double overviewBorderY = (1 / scale) + translateY + overviewTranslateY;
+		double overviewBorderHeight = OVERVIEW_TOP_BORDER_HEIGHT / scale;
+		overviewTopBorder = new Rectangle2D.Double(overviewX, overviewBorderY, overviewWidth, overviewBorderHeight);
+		g2D.draw(overviewTopBorder);
+		g2D.fill(overviewTopBorder);
+		double overviewY = overviewBorderY + overviewBorderHeight;
+		overviewRect = new Rectangle2D.Double(overviewX, overviewY, overviewWidth, overvewHeight);
 		g2D.draw(overviewRect);
 		g2D.setPaint(Color.WHITE);
 		g2D.fill(overviewRect);
@@ -185,5 +198,21 @@ public class View extends JPanel {
 
 	public boolean markerContains(int x, int y) {
 		return marker.contains(x, y);
+	}
+
+	public double getOverviewTranslateX() {
+		return overviewTranslateX;
+	}
+
+	public void setOverviewTranslateX(double overviewTranslateX) {
+		this.overviewTranslateX = overviewTranslateX;
+	}
+
+	public double getOverviewTranslateY() {
+		return overviewTranslateY;
+	}
+
+	public void setOverviewTranslateY(double overviewTranslateY) {
+		this.overviewTranslateY = overviewTranslateY;
 	}
 }

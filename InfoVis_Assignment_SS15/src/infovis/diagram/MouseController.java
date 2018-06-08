@@ -19,17 +19,22 @@ import java.util.List;
 
 public class MouseController implements MouseListener, MouseMotionListener {
 	private Model model;
+	private Model fisheyeModel;
 	private View view;
 	private Element selectedElement = new None();
+	private DrawingEdge drawingEdge = null;
+	private GroupingRectangle groupRectangle;
 	private double mouseOffsetX;
 	private double mouseOffsetY;
-	private boolean edgeDrawMode = false;
-	private DrawingEdge drawingEdge = null;
-	private boolean fisheyeMode;
-	private GroupingRectangle groupRectangle;
-	private boolean selectingMarker = false;
 	private double currentX = 0;
 	private double currentY = 0;
+	private double focusX = 0;
+	private double focusY = 0;
+	private boolean edgeDrawMode = false;
+	private boolean fisheyeMode;
+	private boolean selectingMarker = false;
+	private boolean selectingOverviewTopBorder = false;
+	private final int MAGNIFICATION_FACTOR = 4;
 
 	/*
 	 * Getter And Setter
@@ -117,28 +122,20 @@ public class MouseController implements MouseListener, MouseMotionListener {
 				drawingEdge = new DrawingEdge((Vertex) getElementContainingPosition(x / scale, y / scale));
 				model.addElement(drawingEdge);
 			}
-		} else if (fisheyeMode) {
-			/*
-			 * do handle interactions in fisheye mode
-			 */
-			view.repaint();
 		} else {
 			// Check if user clicks on marker area
-			Rectangle2D marker = view.getMarker();
-			double markerX = (marker.getX() - view.getTranslateX()) * scale;
-			double markerY = (marker.getY() - view.getTranslateY()) * scale;
+			selectingMarker = checkPointInRectangle(view.getMarker(), x, y);
+			// check if user clicks on overview top border
+			selectingOverviewTopBorder = checkPointInRectangle(view.getOverviewTopBorder(), x, y);
 
-			if (x >= markerX && x <= markerX + marker.getWidth() * scale && y >= markerY
-					&& y <= markerY + marker.getHeight() * scale) {
-				selectingMarker = true;
+			if (selectingMarker || selectingOverviewTopBorder) {
 				currentX = x;
 				currentY = y;
 			} else {
-				selectedElement = getElementContainingPosition(x / scale, y / scale);
-
 				/*
 				 * calculate offset
 				 */
+				selectedElement = getElementContainingPosition(x / scale, y / scale);
 				mouseOffsetX = x - selectedElement.getX() * scale;
 				mouseOffsetY = y - selectedElement.getY() * scale;
 				currentX = 0;
@@ -147,13 +144,20 @@ public class MouseController implements MouseListener, MouseMotionListener {
 		}
 	}
 
+	private boolean checkPointInRectangle(Rectangle2D rectangle, int x, int y) {
+		double scale = view.getScale();
+		double rectangleX = (rectangle.getX() - view.getTranslateX()) * scale;
+		double rectangleY = (rectangle.getY() - view.getTranslateY()) * scale;
+
+		return x >= rectangleX && x <= rectangleX + rectangle.getWidth() * scale && y >= rectangleY
+				&& y <= rectangleY + rectangle.getHeight() * scale;
+	}
+
 	public void mouseReleased(MouseEvent arg0) {
+		selectingMarker = false;
+		selectingOverviewTopBorder = false;
 		int x = arg0.getX();
 		int y = arg0.getY();
-
-		if (selectingMarker) {
-			selectingMarker = false;
-		}
 
 		if (drawingEdge != null) {
 			Element to = getElementContainingPosition(x, y);
@@ -215,20 +219,23 @@ public class MouseController implements MouseListener, MouseMotionListener {
 		int y = e.getY();
 		double scale = view.getScale();
 
-		if (selectingMarker) {
-			double overviewScale = view.getOverviewScale();
-			// update translation, x and y need to be scaled to overview size, translation
-			// is added cummulatively
-			double translateX = (x - currentX) * overviewScale + view.getTranslateX();
-			double translateY = (y - currentY) * overviewScale + view.getTranslateY();
+		if (selectingMarker || selectingOverviewTopBorder) {
+			if (selectingMarker) {
+				double overviewScale = view.getOverviewScale();
+				// update translation, x and y need to be scaled to overview size, translation
+				// is added cummulatively
+				double translateX = (x - currentX) * overviewScale + view.getTranslateX();
+				double translateY = (y - currentY) * overviewScale + view.getTranslateY();
+				view.updateTranslation(translateX, translateY);
+			} else {
+				double translateX = (x - currentX) / scale + view.getOverviewTranslateX();
+				double translateY = (y - currentY) / scale + view.getOverviewTranslateY();
+				view.setOverviewTranslateX(translateX);
+				view.setOverviewTranslateY(translateY);
+			}
+
 			currentX = x;
 			currentY = y;
-			view.updateTranslation(translateX, translateY);
-		} else if (fisheyeMode) {
-			/*
-			 * handle fisheye mode interactions
-			 */
-			view.repaint();
 		} else if (edgeDrawMode) {
 			if (drawingEdge != null) {
 				drawingEdge.setX(e.getX());
@@ -242,6 +249,12 @@ public class MouseController implements MouseListener, MouseMotionListener {
 	}
 
 	public void mouseMoved(MouseEvent e) {
+		if (fisheyeMode) {
+			focusX = e.getX();
+			focusY = e.getY();
+			setFisheyeModel();
+			view.repaint();
+		}
 	}
 
 	public boolean isDrawingEdges() {
@@ -254,22 +267,52 @@ public class MouseController implements MouseListener, MouseMotionListener {
 
 	public void setFisheyeMode(boolean b) {
 		fisheyeMode = b;
+
 		if (b) {
-			Debug.p("new Fisheye Layout");
-			/*
-			 * handle fish eye initial call
-			 */
+			// initial focus is at center of screen
+			focusX = view.getWidth() / 2;
+			focusY = view.getHeight() / 2;
+			setFisheyeModel();
 			view.repaint();
 		} else {
-			Debug.p("new Normal Layout");
 			view.setModel(model);
 			view.repaint();
 		}
 	}
 
-	/*
-	 * private Methods
-	 */
+	private void setFisheyeModel() {
+		fisheyeModel = new Model();
+
+		for (Element element : model.getElements()) {
+			Vertex current = (Vertex) element;
+			double boundaryX = current.getX() + current.getWidth();
+			double centerX = getFisheyeCoordinate(current.getCenterX(), view.getWidth(), focusX);
+			double rightX = getFisheyeCoordinate(boundaryX, view.getWidth(), focusX);
+			double boundaryY = current.getY() + current.getHeight();
+			double centerY = getFisheyeCoordinate(current.getCenterY(), view.getHeight(), focusY);
+			double bottomY = getFisheyeCoordinate(boundaryY, view.getHeight(), focusY);
+			Vertex newVertex = new Vertex(centerX - (rightX - centerX), centerY - (bottomY - centerY),
+					2 * (rightX - centerX), 2 * (bottomY - centerY));
+			fisheyeModel.addVertex(newVertex);
+		}
+
+		view.setModel(fisheyeModel);
+	}
+
+	private double getFisheyeCoordinate(double original, double boundary, double focus) {
+		double dNorm = original - focus;
+		double dMax;
+
+		if (original >= focus) {
+			dMax = boundary - focus;
+		} else {
+			dMax = 0 - focus;
+		}
+
+		double temp = dNorm / dMax;
+		return focus + (((MAGNIFICATION_FACTOR + 1) * temp) / ((MAGNIFICATION_FACTOR * temp) + 1) * dMax);
+	}
+
 	private Element getElementContainingPosition(double x, double y) {
 		Element currentElement = new None();
 		Iterator<Element> iter = getModel().iterator();

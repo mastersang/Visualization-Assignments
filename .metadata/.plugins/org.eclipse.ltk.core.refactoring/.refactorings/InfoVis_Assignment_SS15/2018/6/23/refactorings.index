@@ -4,3 +4,7 @@
 1528396257231	Rename local variable 'index'
 1528400915463	Rename local variable 'index'
 1528402294544	Rename local variable 'index'
+1528445478383	Rename local variable 'dNormX'
+1528445482915	Rename local variable 'dMaxLeftX'
+1528445487962	Rename local variable 'tempLeftX'
+1528445883476	Rename local variable 'leftX'
