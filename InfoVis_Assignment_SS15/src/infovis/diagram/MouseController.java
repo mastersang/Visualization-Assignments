@@ -227,6 +227,8 @@ public class MouseController implements MouseListener, MouseMotionListener {
 				double translateX = (x - currentX) * overviewScale + view.getTranslateX();
 				double translateY = (y - currentY) * overviewScale + view.getTranslateY();
 				view.updateTranslation(translateX, translateY);
+				updateFisheyeFocus(view.getScale());
+				mouseMoved(e);
 			} else {
 				double translateX = (x - currentX) / scale + view.getOverviewTranslateX();
 				double translateY = (y - currentY) / scale + view.getOverviewTranslateY();
@@ -250,8 +252,9 @@ public class MouseController implements MouseListener, MouseMotionListener {
 
 	public void mouseMoved(MouseEvent e) {
 		if (fisheyeMode) {
-			focusX = e.getX();
-			focusY = e.getY();
+			double scale = view.getScale();
+			focusX = e.getX() / scale + view.getTranslateX();
+			focusY = e.getY() / scale + view.getTranslateY();
 			setFisheyeModel();
 			view.repaint();
 		}
@@ -269,9 +272,10 @@ public class MouseController implements MouseListener, MouseMotionListener {
 		fisheyeMode = b;
 
 		if (b) {
-			// initial focus is at center of screen
-			focusX = view.getWidth() / 2;
-			focusY = view.getHeight() / 2;
+			double scale = view.getScale();
+			// initial focus is at center
+			focusX = view.getWidth() / 2 / scale;
+			focusY = view.getHeight() / 2 / scale;
 			setFisheyeModel();
 			view.repaint();
 		} else {
@@ -280,19 +284,39 @@ public class MouseController implements MouseListener, MouseMotionListener {
 		}
 	}
 
+	public void updateFisheyeFocus(double scale) {
+		if (fisheyeMode) {
+			focusX = focusX * view.getScale() / scale;
+			focusY = focusY * view.getScale() / scale;
+			setFisheyeModel();
+		}
+	}
+
 	private void setFisheyeModel() {
 		fisheyeModel = new Model();
 
 		for (Element element : model.getElements()) {
 			Vertex current = (Vertex) element;
+			double ratio = current.getWidth() / current.getHeight();
 			double boundaryX = current.getX() + current.getWidth();
 			double centerX = getFisheyeCoordinate(current.getCenterX(), view.getWidth(), focusX);
 			double rightX = getFisheyeCoordinate(boundaryX, view.getWidth(), focusX);
 			double boundaryY = current.getY() + current.getHeight();
 			double centerY = getFisheyeCoordinate(current.getCenterY(), view.getHeight(), focusY);
 			double bottomY = getFisheyeCoordinate(boundaryY, view.getHeight(), focusY);
-			Vertex newVertex = new Vertex(centerX - (rightX - centerX), centerY - (bottomY - centerY),
-					2 * (rightX - centerX), 2 * (bottomY - centerY));
+			double width = 2 * (rightX - centerX);
+			double height = 2 * (bottomY - centerY);
+			double heightByWidth = width / ratio;
+			double widthByHeight = height * ratio;
+
+			// Select minimum size and preserve ratio
+			if (width < widthByHeight) {
+				height = heightByWidth;
+			} else {
+				width = widthByHeight;
+			}
+
+			Vertex newVertex = new Vertex(centerX - width / 2, centerY - height / 2, width, height);
 			fisheyeModel.addVertex(newVertex);
 		}
 

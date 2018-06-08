@@ -2,12 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="labelIndexList" key="selection"/>
+		<item value="setSca" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="setsca"/>
+			<item value="scale"/>
+			<item value="setscale"/>
+			<item value="selectedElement"/>
+			<item value="setmodel"/>
+			<item value="draw"/>
+			<item value="fisheyeModel"/>
+			<item value="mousemo"/>
 			<item value="labelIndexlist"/>
 			<item value="labelindex"/>
 			<item value="mouseOffsetX"/>
@@ -15,14 +23,6 @@
 			<item value="(getWidth() - paddingY) / model.getDim();"/>
 			<item value="step"/>
 			<item value="ste["/>
-			<item value="cen"/>
-			<item value="dim"/>
-			<item value=".clear"/>
-			<item value="setModel"/>
-			<item value="cell"/>
-			<item value="system"/>
-			<item value="border"/>
-			<item value="settr"/>
 		</list>
 		<list key="replacehistory">
 		</list>

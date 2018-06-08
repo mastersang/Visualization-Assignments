@@ -11,7 +11,6 @@
 <fullyQualifiedTypeName name="java.awt.BasicStroke"/>
 <fullyQualifiedTypeName name="javax.swing.SwingUtilities"/>
 <fullyQualifiedTypeName name="java.awt.Stroke"/>
-<fullyQualifiedTypeName name="infovis.diagram.Model"/>
 <fullyQualifiedTypeName name="infovis.diagram.elements.Vertex"/>
 <fullyQualifiedTypeName name="javax.swing.JFrame"/>
 <fullyQualifiedTypeName name="infovis.diagram.elements.DrawingEdge"/>
@@ -28,10 +27,8 @@
 <fullyQualifiedTypeName name="infovis.paracoords.PlotLine"/>
 <fullyQualifiedTypeName name="java.awt.geom.Line2D"/>
 <fullyQualifiedTypeName name="java.awt.geom.Line2D.Double"/>
-<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D.Double"/>
 <fullyQualifiedTypeName name="javafx.geometry.Rectangle2D"/>
 <fullyQualifiedTypeName name="infovis.paracoords.LabelContainer"/>
-<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D"/>
 <fullyQualifiedTypeName name="java.lang.ArrayIndexOutOfBoundsException"/>
 <fullyQualifiedTypeName name="java.net.CookiePolicy"/>
 <fullyQualifiedTypeName name="java.awt.geom.Point2D"/>
@@ -39,4 +36,7 @@
 <fullyQualifiedTypeName name="java.util.Comparator"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="infovis.debug.Debug"/>
+<fullyQualifiedTypeName name="infovis.diagram.Model"/>
+<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D"/>
+<fullyQualifiedTypeName name="java.awt.geom.Rectangle2D.Double"/>
 </qualifiedTypeNameHistroy>
