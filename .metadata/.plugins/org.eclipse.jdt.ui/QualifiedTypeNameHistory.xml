@@ -39,4 +39,5 @@
 <fullyQualifiedTypeName name="infovis.diagram.Model"/>
 <fullyQualifiedTypeName name="java.awt.geom.Rectangle2D"/>
 <fullyQualifiedTypeName name="java.awt.geom.Rectangle2D.Double"/>
+<fullyQualifiedTypeName name="infovis.diagram.layout.Fisheye"/>
 </qualifiedTypeNameHistroy>

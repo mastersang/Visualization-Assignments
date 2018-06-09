@@ -2,12 +2,19 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="setSca" key="selection"/>
+		<item value="setF" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="setf"/>
+			<item value="MAGNIFICATION_FACTOR"/>
+			<item value="getfi"/>
+			<item value="update"/>
+			<item value="fisheye.t"/>
+			<item value="fisheye.t]"/>
+			<item value="fisheye"/>
 			<item value="setsca"/>
 			<item value="scale"/>
 			<item value="setscale"/>
@@ -16,13 +23,6 @@
 			<item value="draw"/>
 			<item value="fisheyeModel"/>
 			<item value="mousemo"/>
-			<item value="labelIndexlist"/>
-			<item value="labelindex"/>
-			<item value="mouseOffsetX"/>
-			<item value="offset"/>
-			<item value="(getWidth() - paddingY) / model.getDim();"/>
-			<item value="step"/>
-			<item value="ste["/>
 		</list>
 		<list key="replacehistory">
 		</list>

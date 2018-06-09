@@ -10,7 +10,7 @@ import infovis.diagram.elements.Vertex;
  */
 
 public class Fisheye implements Layout {
-	private final int MAGNIFICATION_FACTOR = 4;
+	private final int MAGNIFICATION_FACTOR = 1;
 
 	public void setMouseCoords(int x, int y, View view) {
 		// TODO Auto-generated method stub

@@ -34,13 +34,14 @@ public class Fisheye implements Layout {
 			double widthByHeight = height * ratio;
 
 			// Select minimum size and preserve ratio
-			if (width < widthByHeight) {
+		/*	if (width < widthByHeight) {
 				height = heightByWidth;
 			} else {
 				width = widthByHeight;
-			}
+			}*/
 
-			Vertex newVertex = new Vertex(topLeftX, topLeftY, width, height);
+			Vertex newVertex = new Vertex(topLeftX, topLeftY, width, heightByWidth);
+			//Vertex newVertex = new Vertex(topLeftX, topLeftY, width, height);
 			fisheyeModel.addVertex(newVertex);
 		}
 

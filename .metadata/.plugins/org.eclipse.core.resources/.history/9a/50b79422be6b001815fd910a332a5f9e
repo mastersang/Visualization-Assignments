@@ -40,7 +40,7 @@ public class Fisheye implements Layout {
 				width = widthByHeight;
 			}
 
-			Vertex newVertex = new Vertex(topLeftX, topLeftY, width, height);
+			Vertex newVertex = new Vertex(topLeftX, centerY - height / 2, width, height);
 			fisheyeModel.addVertex(newVertex);
 		}
 

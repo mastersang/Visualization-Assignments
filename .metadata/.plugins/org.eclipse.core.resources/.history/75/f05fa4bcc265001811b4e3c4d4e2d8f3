@@ -1,7 +1,0 @@
-package infovis.paracoords;
-
-public class Axis {
-	private double x;
-	private double min;
-	private double step;
-}
