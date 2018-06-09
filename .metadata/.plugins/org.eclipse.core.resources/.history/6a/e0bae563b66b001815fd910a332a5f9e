@@ -310,4 +310,20 @@ public class MouseController implements MouseListener, MouseMotionListener {
 
 		return currentElement;
 	}
+
+	public double getFocusX() {
+		return focusX;
+	}
+
+	public void setFocusX(double focusX) {
+		this.focusX = focusX;
+	}
+
+	public double getFocusY() {
+		return focusY;
+	}
+
+	public void setFocusY(double focusY) {
+		this.focusY = focusY;
+	}
 }

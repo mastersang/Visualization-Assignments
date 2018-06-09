@@ -1,16 +1,19 @@
 package infovis.diagram.layout;
 
+import infovis.debug.Debug;
 import infovis.diagram.Model;
 import infovis.diagram.View;
+import infovis.diagram.elements.Edge;
 import infovis.diagram.elements.Element;
 import infovis.diagram.elements.Vertex;
+
+import java.util.Iterator;
 
 /*
  * 
  */
 
 public class Fisheye implements Layout {
-	private final int MAGNIFICATION_FACTOR = 4;
 
 	public void setMouseCoords(int x, int y, View view) {
 		// TODO Auto-generated method stub
@@ -43,21 +46,8 @@ public class Fisheye implements Layout {
 			Vertex newVertex = new Vertex(centerX - width / 2, centerY - height / 2, width, height);
 			fisheyeModel.addVertex(newVertex);
 		}
-		
-		return fisheyeModel;
+
+		view.setModel(fisheyeModel);
 	}
 
-	private double getFisheyeCoordinate(double original, double boundary, double focus) {
-		double dNorm = original - focus;
-		double dMax;
-
-		if (original >= focus) {
-			dMax = boundary - focus;
-		} else {
-			dMax = 0 - focus;
-		}
-
-		double temp = dNorm / dMax;
-		return focus + (((MAGNIFICATION_FACTOR + 1) * temp) / ((MAGNIFICATION_FACTOR * temp) + 1) * dMax);
-	}
 }

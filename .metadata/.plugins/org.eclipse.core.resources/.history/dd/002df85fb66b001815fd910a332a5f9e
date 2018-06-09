@@ -19,10 +19,6 @@ public class View extends JPanel {
 	private double scale = 1;
 	private double translateX = 0;
 	private double translateY = 0;
-
-	// Max translate X and Y so marker can't be dragged outside of overview
-	private double maxTranslateX = -1;
-	private double maxTranslateY = -1;
 	private double overviewTranslateX = 0;
 	private double overviewTranslateY = 0;
 	private double focusX = 0;
@@ -33,6 +29,10 @@ public class View extends JPanel {
 	private final int OVERVIEW_SCALE = 4;
 	private final int DEFAULT_BORDER_THICKNESS = 2;
 	private final int OVERVIEW_TOP_BORDER_HEIGHT = 15;
+
+	// Max translate X and Y so marker can't be dragged outside of overview
+	private double maxTranslateX = -1;
+	private double maxTranslateY = -1;
 
 	public Model getModel() {
 		return model;

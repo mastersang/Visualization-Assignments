@@ -310,4 +310,3 @@ public class MouseController implements MouseListener, MouseMotionListener {
 
 		return currentElement;
 	}
-}

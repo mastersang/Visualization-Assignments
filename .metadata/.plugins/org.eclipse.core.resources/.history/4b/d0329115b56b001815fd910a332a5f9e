@@ -7,8 +7,6 @@ import infovis.diagram.elements.Element;
 import infovis.diagram.elements.GroupingRectangle;
 import infovis.diagram.elements.None;
 import infovis.diagram.elements.Vertex;
-import infovis.diagram.layout.Fisheye;
-
 import java.awt.Color;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
@@ -21,6 +19,7 @@ import java.util.List;
 
 public class MouseController implements MouseListener, MouseMotionListener {
 	private Model model;
+	private Model fisheyeModel;
 	private View view;
 	private Element selectedElement = new None();
 	private DrawingEdge drawingEdge = null;
@@ -33,6 +32,7 @@ public class MouseController implements MouseListener, MouseMotionListener {
 	private boolean fisheyeMode;
 	private boolean selectingMarker = false;
 	private boolean selectingOverviewTopBorder = false;
+	private final int MAGNIFICATION_FACTOR = 4;
 
 	/*
 	 * Getter And Setter
@@ -251,8 +251,8 @@ public class MouseController implements MouseListener, MouseMotionListener {
 	public void mouseMoved(MouseEvent e) {
 		if (fisheyeMode) {
 			double scale = view.getScale();
-			view.setFocusX(e.getX() / scale + view.getTranslateX());
-			view.setFocusY(e.getY() / scale + view.getTranslateY());
+			focusX = e.getX() / scale + view.getTranslateX();
+			focusY = e.getY() / scale + view.getTranslateY();
 			setFisheyeModel();
 			view.repaint();
 		}
@@ -272,8 +272,8 @@ public class MouseController implements MouseListener, MouseMotionListener {
 		if (b) {
 			double scale = view.getScale();
 			// initial focus is at center
-			view.setFocusX(view.getWidth() / 2 / scale);
-			view.setFocusY(view.getHeight() / 2 / scale);
+			focusX = view.getWidth() / 2 / scale;
+			focusY = view.getHeight() / 2 / scale;
 			setFisheyeModel();
 			view.repaint();
 		} else {
@@ -284,16 +284,27 @@ public class MouseController implements MouseListener, MouseMotionListener {
 
 	public void updateFisheyeFocus(double scale) {
 		if (fisheyeMode) {
-			view.setFocusX(view.getFocusX() * view.getScale() / scale);
-			view.setFocusY(view.getFocusY() * view.getScale() / scale);
+			focusX = focusX * view.getScale() / scale;
+			focusY = focusY * view.getScale() / scale;
 			setFisheyeModel();
 		}
 	}
 
 	private void setFisheyeModel() {
-		Fisheye fisheye = new Fisheye();
-		Model fisheyeModel = fisheye.transform(model, view);
-		view.setModel(fisheyeModel);
+	}
+
+	private double getFisheyeCoordinate(double original, double boundary, double focus) {
+		double dNorm = original - focus;
+		double dMax;
+
+		if (original >= focus) {
+			dMax = boundary - focus;
+		} else {
+			dMax = 0 - focus;
+		}
+
+		double temp = dNorm / dMax;
+		return focus + (((MAGNIFICATION_FACTOR + 1) * temp) / ((MAGNIFICATION_FACTOR * temp) + 1) * dMax);
 	}
 
 	private Element getElementContainingPosition(double x, double y) {
@@ -309,5 +320,21 @@ public class MouseController implements MouseListener, MouseMotionListener {
 		}
 
 		return currentElement;
+	}
+
+	public double getFocusX() {
+		return focusX;
+	}
+
+	public void setFocusX(double focusX) {
+		this.focusX = focusX;
+	}
+
+	public double getFocusY() {
+		return focusY;
+	}
+
+	public void setFocusY(double focusY) {
+		this.focusY = focusY;
 	}
 }
