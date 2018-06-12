@@ -1,0 +1,295 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="MinSizeRel|x64">
+      <Configuration>MinSizeRel</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="RelWithDebInfo|x64">
+      <Configuration>RelWithDebInfo</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{048D3650-88C3-3091-888D-CDDF17D25DEF}</ProjectGuid>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+    <Keyword>Win32Proj</Keyword>
+    <Platform>x64</Platform>
+    <ProjectName>glfw</ProjectName>
+    <VCProjectUpgraderObjectName>NoUpgrade</VCProjectUpgraderObjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <CharacterSet>MultiByte</CharacterSet>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup>
+    <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\Debug\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glfw.dir\Debug\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">glfw3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\Release\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glfw.dir\Release\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">glfw3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\MinSizeRel\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">glfw.dir\MinSizeRel\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">glfw3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.lib</TargetExt>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\RelWithDebInfo\</OutDir>
+    <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">glfw.dir\RelWithDebInfo\</IntDir>
+    <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">glfw3</TargetName>
+    <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Debug/</AssemblerListingLocation>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>Disabled</InlineFunctionExpansion>
+      <Optimization>Disabled</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;EXERCISE_SCIVIS_SOURCE_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master";EXERCISE_SCIVIS_BINARY_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master/build";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR="Debug";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;EXERCISE_SCIVIS_SOURCE_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master\";EXERCISE_SCIVIS_BINARY_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master/build\";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>Release/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;EXERCISE_SCIVIS_SOURCE_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master";EXERCISE_SCIVIS_BINARY_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master/build";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR="Release";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;EXERCISE_SCIVIS_SOURCE_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master\";EXERCISE_SCIVIS_BINARY_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master/build\";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MinSpace</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;EXERCISE_SCIVIS_SOURCE_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master";EXERCISE_SCIVIS_BINARY_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master/build";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR="MinSizeRel";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+      <DebugInformationFormat></DebugInformationFormat>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;EXERCISE_SCIVIS_SOURCE_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master\";EXERCISE_SCIVIS_BINARY_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master/build\";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
+    <ClCompile>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
+      <CompileAs>CompileAsC</CompileAs>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <ExceptionHandling>
+      </ExceptionHandling>
+      <InlineFunctionExpansion>OnlyExplicitInline</InlineFunctionExpansion>
+      <Optimization>MaxSpeed</Optimization>
+      <PrecompiledHeader>NotUsing</PrecompiledHeader>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;EXERCISE_SCIVIS_SOURCE_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master";EXERCISE_SCIVIS_BINARY_DIR="E:/Study/Visualization/Assignments/ExSciVis2018-master/build";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR="RelWithDebInfo";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ObjectFileName>$(IntDir)</ObjectFileName>
+    </ClCompile>
+    <ResourceCompile>
+      <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;EXERCISE_SCIVIS_SOURCE_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master\";EXERCISE_SCIVIS_BINARY_DIR=\"E:/Study/Visualization/Assignments/ExSciVis2018-master/build\";GLEW_STATIC;_CRT_SECURE_NO_WARNINGS;UNICODE;WINVER=0x0501;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ResourceCompile>
+    <Midl>
+      <AdditionalIncludeDirectories>E:\Study\Visualization\Assignments\ExSciVis2018-master\external;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src;E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
+      <HeaderFileName>%(Filename).h</HeaderFileName>
+      <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
+      <InterfaceIdentifierFileName>%(Filename)_i.c</InterfaceIdentifierFileName>
+      <ProxyFileName>%(Filename)_p.c</ProxyFileName>
+    </Midl>
+    <Lib>
+      <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
+E:\Programs\CMake\bin\cmake.exe -HE:/Study/Visualization/Assignments/ExSciVis2018-master -BE:/Study/Visualization/Assignments/ExSciVis2018-master/build --check-stamp-file E:/Study/Visualization/Assignments/ExSciVis2018-master/build/external/glfw-3.0.3/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
+E:\Programs\CMake\bin\cmake.exe -HE:/Study/Visualization/Assignments/ExSciVis2018-master -BE:/Study/Visualization/Assignments/ExSciVis2018-master/build --check-stamp-file E:/Study/Visualization/Assignments/ExSciVis2018-master/build/external/glfw-3.0.3/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
+E:\Programs\CMake\bin\cmake.exe -HE:/Study/Visualization/Assignments/ExSciVis2018-master -BE:/Study/Visualization/Assignments/ExSciVis2018-master/build --check-stamp-file E:/Study/Visualization/Assignments/ExSciVis2018-master/build/external/glfw-3.0.3/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt</Message>
+      <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
+E:\Programs\CMake\bin\cmake.exe -HE:/Study/Visualization/Assignments/ExSciVis2018-master -BE:/Study/Visualization/Assignments/ExSciVis2018-master/build --check-stamp-file E:/Study/Visualization/Assignments/ExSciVis2018-master/build/external/glfw-3.0.3/src/CMakeFiles/generate.stamp
+if %errorlevel% neq 0 goto :cmEnd
+:cmEnd
+endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
+:cmErrorLevel
+exit /b %1
+:cmDone
+if %errorlevel% neq 0 goto :VCEnd</Command>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:/Study/Visualization/Assignments/ExSciVis2018-master/external/glfw-3.0.3/src/CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\CMakeFiles\generate.stamp</Outputs>
+      <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\clipboard.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\context.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\gamma.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\init.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\input.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\joystick.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\monitor.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\time.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\window.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_clipboard.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_gamma.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_init.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_joystick.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_monitor.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_time.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_window.c"  />
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\wgl_context.c"  />
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\build\external\glfw-3.0.3\src\config.h" />
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\internal.h" />
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include\GLFW\glfw3.h" />
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\include\GLFW\glfw3native.h" />
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\win32_platform.h" />
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\external\glfw-3.0.3\src\wgl_platform.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\build\ZERO_CHECK.vcxproj">
+      <Project>{0AC5667B-EBB6-3B7B-9453-3187112D3EAE}</Project>
+      <Name>ZERO_CHECK</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

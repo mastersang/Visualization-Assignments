@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\glew.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\cube.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\imgui.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\imgui_impl_glfw_gl3.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\plane.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\transfer_function.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\volume_loader_raw.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\window.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\color.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\cube.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\data_types_fwd.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\fensterchen.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\plane.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\transfer_function.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\turntable.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\utils.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\volume_loader_raw.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\window.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\imconfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\imgui.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\imgui_impl_glfw_gl3.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\stb_rect_pack.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\stb_textedit.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\stb_truetype.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\framework\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3E7D0988-80E0-3A60-8320-6635EFDF8DAF}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{B390C876-8BAA-3B6F-A3EC-91AC7DE0BD6F}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

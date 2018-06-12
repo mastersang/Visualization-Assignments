@@ -70,11 +70,13 @@
 	</section>
 	<section name="FatJarPackageWizard">
 		<item value="E:\Study\Visualization\Assignments" key="FatJarPackageWizardPage.ANTSCRIPT_LOCATION"/>
-		<item value="ParaCoords - InfoVis_Assignment_SS15" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
-		<item value="InfoVis_Assignment_SS15\paracoords.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
+		<item value="Scatterplot - InfoVis_Assignment_SS15" key="FatJarPackageWizardPage.LAUNCH_CONFIGURATION_SELECTION_NAME"/>
+		<item value="InfoVis_Assignment_SS15\scatterplot.jar" key="FatJarPackageWizardPage.DESTINATION_PATH_SELECTION"/>
 		<item value="false" key="FatJarPackageWizardPage.ANTSCRIPT_SAVE"/>
 		<item value="1" key="FatJarPackageWizardPage.LIBRARY_HANDLING"/>
 		<list key="FatJarPackageWizardPage.DESTINATION_NAMES_ID">
+			<item value="InfoVis_Assignment_SS15\scatterplot.jar"/>
+			<item value="InfoVis_Assignment_SS15/diagram.jar"/>
 			<item value="InfoVis_Assignment_SS15\paracoords.jar"/>
 			<item value="InfoVis_Assignment_SS15/paracoords.jar"/>
 		</list>

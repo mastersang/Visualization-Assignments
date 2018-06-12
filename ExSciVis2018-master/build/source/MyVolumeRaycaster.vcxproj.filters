@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\source\my_volume_raycaster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\source\shader\pass_through_GUI.vert" />
+    <None Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\source\shader\volume.vert" />
+    <None Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\source\shader\pass_through_GUI.frag" />
+    <None Include="E:\Study\Visualization\Assignments\ExSciVis2018-master\source\shader\volume.frag" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{3E7D0988-80E0-3A60-8320-6635EFDF8DAF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
