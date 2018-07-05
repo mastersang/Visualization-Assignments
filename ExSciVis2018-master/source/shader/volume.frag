@@ -30,18 +30,29 @@ uniform vec3    light_diffuse_color;
 uniform vec3    light_specular_color;
 uniform float   light_ref_coef;
 
-bool
-inside_volume_bounds(const in vec3 sampling_position)
+bool inside_volume_bounds(const in vec3 sampling_position)
 {
-    return (   all(greaterThanEqual(sampling_position, vec3(0.0)))
+    return (all(greaterThanEqual(sampling_position, vec3(0.0)))
             && all(lessThanEqual(sampling_position, max_bounds)));
 }
 
-float
-get_sample_data(vec3 in_sampling_pos)
+float get_sample_data(vec3 in_sampling_pos)
 {
     vec3 obj_to_tex = vec3(1.0) / max_bounds;
     return texture(volume_texture, in_sampling_pos * obj_to_tex).r;
+}
+
+vec3 get_gradient(vec3 sampling_position)
+{
+    float x = sampling_position[0];
+    float y = sampling_position[1];
+    float z = sampling_position[2];
+    vec3 length = max_bounds / volume_dimensions;
+    float dx = (get_sample_data(vec3(x + length.x, y, z)) - get_sample_data(vec3(x - length.x, y,z))) / 2;
+    float dy = (get_sample_data(vec3(x , y + length.y, z)) - get_sample_data(vec3(x , y - length.y ,z))) / 2;
+    float dz = (get_sample_data(vec3(x, y, z + length.z)) - get_sample_data(vec3(x , y, z - length.z))) / 2;
+    vec3 grad = vec3(dx, dy, dz);
+    return normalize(grad);
 }
 
 void main()
@@ -133,55 +144,95 @@ void main()
         // the traversal loop,
         // termination when the sampling position is outside volume boundarys
         // another termination condition for early ray termination is added
-        // store start point for binary search
-        vec3 start_point = sampling_pos;
 
         while (inside_volume)
         {
-            #if TASK == 12 // first-hit traversal
-                // get sample
-                float s = get_sample_data(sampling_pos);
+            // get sample
+            float s = get_sample_data(sampling_pos);
 
-                if (s >= iso_value) {                    
-                    // apply the transfer functions to retrieve color and opacity
-                    vec4 color = texture(transfer_texture, vec2(s, s));
-                    dst = color;
-                    // stop searching
-                    break;
-                }
-            #endif
+            if (s >= iso_value) {               
+                vec3 intersection = sampling_pos;
+
+                #if TASK == 13 // binary search
+                    // start point = previous point
+                    vec3 start_point = sampling_pos - ray_increment;
+                    vec3 end_point = sampling_pos;
+                    bool found = false;
+
+                    // find the point where value equals iso, stops if distance is between start and end is less than 1
+
+                    while (length(end_point - start_point) > 1) {       
+                        vec3 mid_point = (end_point + start_point) / 2;
+                        
+                        // get sample
+                        float mid_value = get_sample_data(mid_point);
+
+                        if (mid_value >= iso_value) {         
+                            intersection = mid_point;       
+
+                            if (mid_value == iso_value) {
+                                // stop searching
+                                break;
+                            }
+                        } else if (s < iso_value) {
+                            start_point = mid_point;
+                        }                      
+                    }           
+                #endif     
+                
+                float intersection_value = get_sample_data(intersection);
+                vec4 color = texture(transfer_texture, vec2(intersection_value, intersection_value));
+                dst = color;
+
+                #if ENABLE_LIGHTNING == 1 // Add Shading
+                    // diffuse
+                    vec3 light_direction = normalize(light_position - sampling_pos);
+                    vec3 grad = get_gradient(sampling_pos);
+                    float diffuse_angle = dot(grad, light_direction);
+                    float diffuse_strength = 0.1f;
+                    vec3 diffusion_light = light_diffuse_color * max(0.0, diffuse_angle);
+                    
+                    // specular
+                    vec3 camera_direction = normalize(camera_location - sampling_pos);
+                    vec3 reflection = normalize(reflect(light_direction, grad));
+                    float specular_angle = dot(camera_direction, reflection);
+                    float specular = pow(specular_angle, light_ref_coef);
+                    vec3 specular_light = light_specular_color * specular;
+
+                    // lighting
+                    vec3 lighting = light_ambient_color + diffusion_light + specular_light;
+                    dst = vec4(lighting, 1.0);
+                #endif
+
+                #if ENABLE_SHADOWING == 1 // Add Shadows
+                    // find the direction to cast the shadow ray
+                    vec3 shadow_ray_increment = normalize(sampling_pos - light_position) * sampling_distance;
+                    vec3 shadow_ray_position = sampling_pos + shadow_ray_increment;
+                    bool shadow_ray_inside_volume = inside_volume_bounds(shadow_ray_position);
+
+                    while (shadow_ray_inside_volume) {
+                        float shadow_value = get_sample_data(shadow_ray_position);
+                        
+                        if (shadow_value >= iso_value) {
+                            // set color to black if shadow ray intersects with volume
+                            dst = vec4(0.0, 0.0, 0.0, 0.0);
+                            break;
+                        }
+
+                        shadow_ray_position += shadow_ray_increment;
+                        shadow_ray_inside_volume = inside_volume_bounds(shadow_ray_position);
+                    }
+                #endif
+
+                break;
+            }
 
             // increment the ray sampling position
             sampling_pos += ray_increment;
 
-            #if ENABLE_LIGHTNING == 1 // Add Shading
-            #endif
-
-            #if ENABLE_SHADOWING == 1 // Add Shadows
-            #endif
-
             // update the loop termination condition
             inside_volume = inside_volume_bounds(sampling_pos);
-        }   
-
-        #if TASK == 13 // binary search
-            while (length(sampling_pos - start_point) > 1) {        
-                vec3 mid_point = (sampling_pos + start_point) / 2;
-                
-                // get sample
-                float s = get_sample_data(mid_point);
-
-                if (s >= iso_value) {                    
-                    // apply the transfer functions to retrieve color and opacity
-                    vec4 color = texture(transfer_texture, vec2(s, s));
-                    dst = color;
-                    // stop searching
-                    break;
-                } else {
-                    start_point = mid_point;
-                }
-            }
-        #endif
+        }  
     #endif
 
     #if TASK == 31
