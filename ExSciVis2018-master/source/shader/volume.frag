@@ -160,7 +160,6 @@ void main()
                     bool found = false;
 
                     // find the point where value equals iso, stops if distance is between start and end is less than 1
-
                     while (length(end_point - start_point) > 1) {       
                         vec3 mid_point = (end_point + start_point) / 2;
                         
@@ -239,18 +238,26 @@ void main()
         // the traversal loop,
         // termination when the sampling position is outside volume boundarys
         // another termination condition for early ray termination is added
+        float transparency = 1;
+        dst = vec4(0.0, 0.0, 0.0, 1.0);
+
         while (inside_volume)
-        {
+        {   
+            float s = get_sample_data(sampling_pos);
+
             // get sample
             #if ENABLE_OPACITY_CORRECTION == 1 // Opacity Correction
-            #else
-                float s = get_sample_data(sampling_pos);
             #endif
-                // dummy code
-                dst = vec4(light_specular_color, 1.0);
 
-                // increment the ray sampling position
-                sampling_pos += ray_increment;
+            vec4 color = texture(transfer_texture, vec2(s, s));
+            //dst += color * transparency;
+            dst.r += color.r * color.a * transparency;
+            dst.g += color.g * color.a * transparency;
+            dst.b += color.b * color.a * transparency;
+            transparency *= (1 - color.a);
+
+            // increment the ray sampling position      
+            sampling_pos += ray_increment;
 
             #if ENABLE_LIGHTNING == 1 // Add Shading
             #endif
