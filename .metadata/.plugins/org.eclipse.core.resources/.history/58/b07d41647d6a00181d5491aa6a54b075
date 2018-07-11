@@ -1,9 +1,0 @@
-package infovis.paracoords;
-
-import java.awt.geom.Rectangle2D;
-
-public class LabelContainer {
-
-	public LabelContainer(Rectangle2D rectangle, int labelIndex) {
-	}
-}

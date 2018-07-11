@@ -1,8 +1,0 @@
-package infovis.paracoords;
-
-import javafx.geometry.Rectangle2D;
-
-public class LabelContainer {
-	Rectangle2D rectangle;
-	int labelIndex;
-}
