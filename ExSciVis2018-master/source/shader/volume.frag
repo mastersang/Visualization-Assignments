@@ -16,7 +16,6 @@ uniform mat4 Modelview;
 uniform sampler3D volume_texture;
 uniform sampler2D transfer_texture;
 
-
 uniform vec3    camera_location;
 uniform float   sampling_distance;
 uniform float   sampling_distance_ref;
@@ -31,8 +30,8 @@ uniform vec3    light_specular_color;
 uniform float   light_ref_coef;
 
 bool inside_volume_bounds(const in vec3 sampling_position) {
-    return (all(greaterThanEqual(sampling_position, vec3(0.0)))
-            && all(lessThanEqual(sampling_position, max_bounds)));
+    return (all(greaterThanEqual(sampling_position, vec3(0.0))) && 
+            all(lessThanEqual(sampling_position, max_bounds)));
 }
 
 float get_sample_data(vec3 in_sampling_pos) {
@@ -58,7 +57,6 @@ vec4 apply_shading(vec3 sampling_pos, vec4 color) {
     vec3 light_direction = normalize(light_position - sampling_pos);
     vec3 grad = get_gradient(sampling_pos);
     float diffuse_angle = dot(grad, light_direction);
-    float diffuse_strength = 0.1f;
     vec3 diffusion_light = light_diffuse_color * max(0.0, diffuse_angle);
     
     // specular
@@ -86,8 +84,8 @@ vec4 front_to_back(vec3 sampling_pos, bool inside_volume, vec3 ray_increment) {
         #endif
 
         vec4 color = texture(transfer_texture, vec2(s, s));
-        vec4 sample_color = color * color.a;
-        result += sample_color * transparency; 
+        color *= transparency;
+        result += color; 
         transparency *= (1 - color.a);
 
         // increment the ray sampling position      
@@ -117,7 +115,6 @@ vec4 back_to_front(vec3 sampling_pos, bool inside_volume, vec3 ray_increment) {
     
     sampling_pos -= ray_increment;
     inside_volume = true;
-    float transparency = 1;
 
     // traverse back to front
     while (inside_volume) {
@@ -127,12 +124,7 @@ vec4 back_to_front(vec3 sampling_pos, bool inside_volume, vec3 ray_increment) {
         #endif
 
         vec4 color = texture(transfer_texture, vec2(s, s));
-        float i = color.a * transparency;
-        result.r += color.r * i;
-        result.g += color.g * i;
-        result.b += color.b * i;
-        result.a += i;
-        transparency *= (1 - color.a);
+        result = color * color.a + result * (1 - color.a); 
         sampling_pos -= ray_increment;
         inside_volume = inside_volume_bounds(sampling_pos);
     }
@@ -189,7 +181,7 @@ void main()
     #endif 
         
     #if TASK == 11
-        vec4 avg_val = vec4(0.0, 0.0, 0.0, 0.0);
+        vec4 avg_val = vec4(0.0, 0.0, 0.0, 1.0);
 
         // store number of traversed points;
         int traversed_points = 0;
@@ -213,7 +205,6 @@ void main()
             avg_val.r = (color.r + avg_val.r * (traversed_points - 1)) / traversed_points;
             avg_val.g = (color.g + avg_val.g * (traversed_points - 1)) / traversed_points;
             avg_val.b = (color.b + avg_val.b * (traversed_points - 1)) / traversed_points;
-            avg_val.a = (color.a + avg_val.a * (traversed_points - 1)) / traversed_points;
             
             // increment the ray sampling position
             sampling_pos  += ray_increment;
